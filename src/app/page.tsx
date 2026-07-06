@@ -12,7 +12,7 @@ export default function Home() {
           </h1>
           <p className="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto px-2">
             제공된 예상문제(1차, 2차, 3차)를 스마트하게 학습하고, 무작위 20문항 모의고사를 통해 실전 감각을 키워보세요. 
-            상세한 맞춤 해설이 제공됩니다.
+            AI로 생성한 상세한 맞춤 해설이 제공 됩니다.
           </p>
         </header>
 
