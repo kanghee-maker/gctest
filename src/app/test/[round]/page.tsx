@@ -2,15 +2,7 @@
 import Link from 'next/link';
 import MockTestClient from './MockTestClient';
 
-// Fisher-Yates shuffle
-function shuffleArray(array: any[]) {
-  const newArr = [...array];
-  for (let i = newArr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
-  }
-  return newArr;
-}
+// We will shuffle on the client side to keep the page fully static while ensuring randomness per visit
 
 async function getQuestions(round: string) {
   try {
@@ -38,9 +30,5 @@ export default async function TestPage({ params }: { params: Promise<{ round: st
     );
   }
 
-  // 무작위로 20문제 추출 (전체 문제가 20개 미만일 경우 전체 사용)
-  const shuffled = shuffleArray(allQuestions);
-  const selectedQuestions = shuffled.slice(0, 20);
-
-  return <MockTestClient round={round} questions={selectedQuestions} />;
+  return <MockTestClient round={round} questions={allQuestions} />;
 }

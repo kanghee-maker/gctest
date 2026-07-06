@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 interface Question {
@@ -11,10 +11,21 @@ interface Question {
   explanation: string;
 }
 
-export default function MockTestClient({ round, questions }: { round: string, questions: Question[] }) {
+export default function MockTestClient({ round, questions: allQuestions }: { round: string, questions: Question[] }) {
+  const [questions, setQuestions] = useState<Question[]>([]);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [userAnswers, setUserAnswers] = useState<Record<number, number>>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  useEffect(() => {
+    // Fisher-Yates shuffle on client to ensure different questions every time
+    const shuffled = [...allQuestions];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    setQuestions(shuffled.slice(0, 20));
+  }, [allQuestions]);
 
   const handleSelect = (qIdx: number, optionIdx: number) => {
     if (isSubmitted) return;
@@ -28,6 +39,14 @@ export default function MockTestClient({ round, questions }: { round: string, qu
     setIsSubmitted(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  if (questions.length === 0) {
+    return (
+      <div className="min-h-screen bg-slate-900 text-white flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-400"></div>
+      </div>
+    );
+  }
 
   if (isSubmitted) {
     let score = 0;
