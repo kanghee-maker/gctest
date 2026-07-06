@@ -3,9 +3,9 @@ const path = require('path');
 
 function parseText(content, filePath) {
     const questions = [];
-    const blocks = content.split(/\*\s*정답\s*:\s*[①②③④⑤12345]/);
+    const blocks = content.split(/(?:\*\s*)?정답\s*:\s*[①②③④⑤12345]/);
     
-    const answersMatches = [...content.matchAll(/\*\s*정답\s*:\s*([①②③④⑤12345])/g)];
+    const answersMatches = [...content.matchAll(/(?:\*\s*)?정답\s*:\s*([①②③④⑤12345])/g)];
     
     if (blocks.length - 1 !== answersMatches.length) {
         console.log(`Mismatch in ${filePath}: ${blocks.length - 1} blocks, ${answersMatches.length} answers`);
@@ -23,7 +23,7 @@ function parseText(content, filePath) {
         block = block.replace(/\(.*?삭제.*?\)/g, '');
 
         // Match start of question (relaxed regex)
-        const match = block.match(/(?:^|\n)\s*(\d{1,3})\.?\.\s+([\s\S]*)/) || block.match(/^(\d{1,3})[\.\s]+([\s\S]*)/);
+        const match = block.match(/(?:^|\n)\s*(\d{1,3})\.?\.\s*([\s\S]*)/) || block.match(/^(\d{1,3})[\.\s]+([\s\S]*)/);
         if (!match) continue;
 
         const qNum = match[1];
