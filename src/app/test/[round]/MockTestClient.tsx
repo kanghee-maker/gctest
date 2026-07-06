@@ -102,7 +102,7 @@ export default function MockTestClient({ round, questions: allQuestions }: { rou
                   </div>
 
                   <div className="ml-12 bg-slate-900 rounded-xl p-5 border border-slate-700">
-                    <h4 className="text-blue-400 font-bold mb-2">AI 해설</h4>
+                    <h4 className="text-blue-400 font-bold mb-2">상세 해설</h4>
                     <p className="text-slate-300 text-sm leading-relaxed">{q.explanation}</p>
                   </div>
                 </div>
