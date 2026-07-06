@@ -2,17 +2,17 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-slate-900 text-white flex flex-col items-center justify-center p-8">
+    <div className="min-h-screen bg-slate-900 text-white flex flex-col items-center justify-center p-4 sm:p-8">
       <div className="max-w-4xl w-full">
-        <header className="text-center mb-16">
-          <h1 className="text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400 drop-shadow-sm">
+        <header className="text-center mb-12 sm:mb-16">
+          <h1 className="text-3xl sm:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400 drop-shadow-sm leading-tight sm:leading-tight">
             2026 과천도시공사
             <br />
             직원능력 검정시험 Study Portal
           </h1>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+          <p className="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto px-2">
             제공된 예상문제(1차, 2차, 3차)를 스마트하게 학습하고, 무작위 20문항 모의고사를 통해 실전 감각을 키워보세요. 
-            AI 기반 맞춤 해설이 제공됩니다.
+            상세한 맞춤 해설이 제공됩니다.
           </p>
         </header>
 

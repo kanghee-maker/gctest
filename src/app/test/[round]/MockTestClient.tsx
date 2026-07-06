@@ -55,12 +55,12 @@ export default function MockTestClient({ round, questions: allQuestions }: { rou
     });
 
     return (
-      <div className="min-h-screen bg-slate-900 text-slate-200 py-10 px-6">
+      <div className="min-h-screen bg-slate-900 text-slate-200 py-6 sm:py-10 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-slate-800 rounded-2xl p-8 border border-slate-700 shadow-xl text-center mb-10">
-            <h1 className="text-3xl font-bold text-white mb-4">시험 결과</h1>
-            <p className="text-xl mb-6">총 {questions.length}문제 중 <span className="text-emerald-400 font-bold">{score}</span>문제를 맞혔습니다.</p>
-            <div className="text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400 mb-8">
+          <div className="bg-slate-800 rounded-2xl p-5 sm:p-8 border border-slate-700 shadow-xl text-center mb-8 sm:mb-10">
+            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-4">시험 결과</h1>
+            <p className="text-lg sm:text-xl mb-6">총 {questions.length}문제 중 <span className="text-emerald-400 font-bold">{score}</span>문제를 맞혔습니다.</p>
+            <div className="text-4xl sm:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400 mb-8">
               {Math.round((score / questions.length) * 100)}점
             </div>
             <Link href="/" className="px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-xl transition-colors inline-block font-medium">
@@ -68,20 +68,20 @@ export default function MockTestClient({ round, questions: allQuestions }: { rou
             </Link>
           </div>
 
-          <h2 className="text-2xl font-bold text-white mb-6">문항별 상세 복습</h2>
-          <div className="space-y-8">
+          <h2 className="text-xl sm:text-2xl font-bold text-white mb-6">문항별 상세 복습</h2>
+          <div className="space-y-6 sm:space-y-8">
             {questions.map((q, idx) => {
               const isCorrect = userAnswers[idx] === q.answer;
               return (
-                <div key={q.id} className={`bg-slate-800 rounded-2xl p-6 border shadow-lg ${isCorrect ? 'border-emerald-500/30' : 'border-rose-500/30'}`}>
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold ${isCorrect ? 'bg-emerald-500/20 text-emerald-400' : 'bg-rose-500/20 text-rose-400'}`}>
+                <div key={q.id} className={`bg-slate-800 rounded-2xl p-4 sm:p-6 border shadow-lg ${isCorrect ? 'border-emerald-500/30' : 'border-rose-500/30'}`}>
+                  <div className="flex items-start gap-3 sm:gap-4 mb-4">
+                    <div className={`flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold text-sm sm:text-base ${isCorrect ? 'bg-emerald-500/20 text-emerald-400' : 'bg-rose-500/20 text-rose-400'}`}>
                       {isCorrect ? 'O' : 'X'}
                     </div>
-                    <h3 className="text-lg font-medium text-white pt-1 whitespace-pre-wrap">{idx + 1}. {q.question}</h3>
+                    <h3 className="text-base sm:text-lg font-medium text-white pt-1 whitespace-pre-wrap">{idx + 1}. {q.question}</h3>
                   </div>
 
-                  <div className="space-y-2 mb-6 pl-12">
+                  <div className="space-y-2 mb-6 mt-4 sm:mt-0 pl-0 sm:pl-12">
                     {q.options.map((opt, oIdx) => {
                       const isUserChoice = userAnswers[idx] === oIdx + 1;
                       const isRealAnswer = q.answer === oIdx + 1;
@@ -94,14 +94,14 @@ export default function MockTestClient({ round, questions: allQuestions }: { rou
                       }
 
                       return (
-                        <div key={oIdx} className={`p-3 rounded-xl border ${bgClass}`}>
+                        <div key={oIdx} className={`p-3 rounded-xl border text-sm sm:text-base ${bgClass}`}>
                           {oIdx + 1}. {opt} {isUserChoice && !isRealAnswer && '(내 선택)'} {isRealAnswer && '(정답)'}
                         </div>
                       );
                     })}
                   </div>
 
-                  <div className="ml-12 bg-slate-900 rounded-xl p-5 border border-slate-700">
+                  <div className="mt-4 sm:mt-0 ml-0 sm:ml-12 bg-slate-900 rounded-xl p-4 sm:p-5 border border-slate-700">
                     <h4 className="text-blue-400 font-bold mb-2">상세 해설</h4>
                     <p className="text-slate-300 text-sm leading-relaxed">{q.explanation}</p>
                   </div>
@@ -119,9 +119,9 @@ export default function MockTestClient({ round, questions: allQuestions }: { rou
   return (
     <div className="min-h-screen bg-slate-900 text-slate-200">
       <div className="sticky top-0 z-10 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
-        <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
-          <h1 className="text-xl font-bold text-white">{round}차 모의고사</h1>
-          <div className="text-emerald-400 font-medium">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+          <h1 className="text-lg sm:text-xl font-bold text-white truncate mr-2">{round}차 모의고사</h1>
+          <div className="text-emerald-400 font-medium text-sm sm:text-base whitespace-nowrap">
             진행도: {Object.keys(userAnswers).length} / {questions.length}
           </div>
         </div>
@@ -130,7 +130,7 @@ export default function MockTestClient({ round, questions: allQuestions }: { rou
         </div>
       </div>
 
-      <div className="max-w-3xl mx-auto px-6 py-10">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
         <div className="mb-6 flex gap-2 overflow-x-auto pb-4 no-scrollbar">
           {questions.map((_, i) => (
             <button
@@ -149,8 +149,8 @@ export default function MockTestClient({ round, questions: allQuestions }: { rou
           ))}
         </div>
 
-        <div className="bg-slate-800 rounded-2xl p-8 border border-slate-700 shadow-xl min-h-[400px]">
-          <h2 className="text-xl font-medium text-white mb-8 leading-relaxed whitespace-pre-wrap">
+        <div className="bg-slate-800 rounded-2xl p-5 sm:p-8 border border-slate-700 shadow-xl min-h-[400px]">
+          <h2 className="text-lg sm:text-xl font-medium text-white mb-6 sm:mb-8 leading-relaxed whitespace-pre-wrap">
             <span className="text-blue-400 font-bold mr-2">Q{currentIdx + 1}.</span> 
             {currentQ.question}
           </h2>
@@ -160,7 +160,7 @@ export default function MockTestClient({ round, questions: allQuestions }: { rou
               <button
                 key={oIdx}
                 onClick={() => handleSelect(currentIdx, oIdx)}
-                className={`w-full text-left p-4 rounded-xl border transition-all ${
+                className={`w-full text-left p-3 sm:p-4 rounded-xl border transition-all text-sm sm:text-base ${
                   userAnswers[currentIdx] === oIdx + 1
                     ? 'bg-blue-500/20 border-blue-500 text-blue-100 shadow-[0_0_15px_rgba(59,130,246,0.15)]'
                     : 'bg-slate-900/50 border-slate-700 text-slate-300 hover:bg-slate-800 hover:border-slate-500'
