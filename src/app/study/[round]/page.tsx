@@ -1,12 +1,17 @@
-import fs from 'fs';
-import path from 'path';
+
 import Link from 'next/link';
 
 async function getQuestions(round: string) {
-  const filePath = path.join(process.cwd(), 'src/data', `quiz${round}.json`);
-  if (!fs.existsSync(filePath)) return null;
-  const fileContent = fs.readFileSync(filePath, 'utf-8');
-  return JSON.parse(fileContent);
+  try {
+    switch (round) {
+      case '1': return (await import('@/data/quiz1.json')).default;
+      case '2': return (await import('@/data/quiz2.json')).default;
+      case '3': return (await import('@/data/quiz3.json')).default;
+      default: return null;
+    }
+  } catch (e) {
+    return null;
+  }
 }
 
 export default async function StudyPage({ params }: { params: { round: string } }) {
