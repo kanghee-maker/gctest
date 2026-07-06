@@ -18,11 +18,12 @@ function parseText(content, filePath) {
         const ansChar = answersMatches[i][1];
         const ans = ansMap[ansChar] || 1;
 
-        // Clean page numbers
         block = block.replace(/-\s*\d+\s*-/g, '').trim();
+        block = block.replace(/\(정정\)\s*/g, '');
+        block = block.replace(/\(.*?삭제.*?\)/g, '');
 
-        // Match start of question
-        const match = block.match(/(?:^|\n)\s*(\d{1,3})\.\s+([\s\S]*)/);
+        // Match start of question (relaxed regex)
+        const match = block.match(/(?:^|\n)\s*(\d{1,3})\.?\.\s+([\s\S]*)/) || block.match(/^(\d{1,3})[\.\s]+([\s\S]*)/);
         if (!match) continue;
 
         const qNum = match[1];

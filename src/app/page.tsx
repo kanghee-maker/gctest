@@ -41,7 +41,7 @@ export default function Home() {
       </div>
       
       <footer className="mt-20 text-slate-500 text-sm">
-        &copy; 2026 과천도시공사 직원능력 검정시험 대비
+        &copy; 2026 우세림. 과천도시공사 직원능력 검정시험 대비
       </footer>
     </div>
   );
