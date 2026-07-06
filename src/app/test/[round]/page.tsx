@@ -25,8 +25,8 @@ async function getQuestions(round: string) {
   }
 }
 
-export default async function TestPage({ params }: { params: { round: string } }) {
-  const round = params.round;
+export default async function TestPage({ params }: { params: Promise<{ round: string }> }) {
+  const { round } = await params;
   const allQuestions = await getQuestions(round);
 
   if (!allQuestions) {
