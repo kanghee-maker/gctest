@@ -25,7 +25,7 @@ export default function Home() {
           ].map((exam) => (
             <div key={exam.id} className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-5 sm:p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 flex flex-col h-full">
               <div className={`h-2 w-16 bg-gradient-to-r ${exam.color} rounded-full mb-6`}></div>
-              <h2 className="text-xl xl:text-2xl font-bold mb-2 tracking-tight break-keep">{exam.title}</h2>
+              <h2 className="text-xl xl:text-2xl font-bold mb-2 tracking-tight break-words">{exam.title}</h2>
               <p className="text-slate-400 mb-6 flex-grow text-sm sm:text-base">총 {exam.count}문항 (상세 맞춤 해설 포함)</p>
               
               <div className="flex flex-col gap-3 mt-auto">
