@@ -7,6 +7,7 @@ async function getQuestions(round: string) {
       case '1': return (await import('@/data/quiz1.json')).default;
       case '2': return (await import('@/data/quiz2.json')).default;
       case '3': return (await import('@/data/quiz3.json')).default;
+      case '4': return (await import('@/data/quiz4.json')).default;
       default: return null;
     }
   } catch (e) {
