@@ -21,7 +21,7 @@ export default function Home() {
             { id: 1, title: '1차 예상문제', count: 168, color: 'from-blue-500 to-cyan-500' },
             { id: 2, title: '2차 예상문제', count: 66, color: 'from-indigo-500 to-blue-500' },
             { id: 3, title: '3차 예상문제', count: 111, color: 'from-emerald-500 to-teal-500' },
-            { id: 4, title: '알기쉬운법령정비기준', count: 0, color: 'from-amber-500 to-orange-500' },
+            { id: 4, title: '알기쉬운법령정비기준', count: 30, color: 'from-amber-500 to-orange-500' },
           ].map((exam) => (
             <div key={exam.id} className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
               <div className={`h-2 w-16 bg-gradient-to-r ${exam.color} rounded-full mb-6`}></div>
