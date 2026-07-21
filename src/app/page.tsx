@@ -39,6 +39,12 @@ export default function Home() {
             </div>
           ))}
         </div>
+        
+        <div className="mt-12 text-center">
+          <Link href="/notes" className="inline-block w-full md:w-auto px-10 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1 border border-slate-700/50">
+            📝 내 오답노트 복습하기
+          </Link>
+        </div>
       </div>
       
       <footer className="mt-20 text-slate-500 text-sm">

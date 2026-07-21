@@ -36,6 +36,24 @@ export default function MockTestClient({ round, questions: allQuestions }: { rou
     if (Object.keys(userAnswers).length < questions.length) {
       if (!confirm("아직 풀지 않은 문제가 있습니다. 제출하시겠습니까?")) return;
     }
+
+    try {
+      const existingNotes = JSON.parse(localStorage.getItem('gctest_wrong_notes') || '[]');
+      const newWrongNotes = questions
+        .filter((q, idx) => userAnswers[idx] !== q.answer)
+        .map(q => ({ ...q, round }));
+      
+      const merged = [...existingNotes];
+      newWrongNotes.forEach(note => {
+        if (!merged.find(m => m.round === note.round && m.id === note.id)) {
+          merged.push(note);
+        }
+      });
+      localStorage.setItem('gctest_wrong_notes', JSON.stringify(merged));
+    } catch (e) {
+      console.error("Failed to save wrong notes", e);
+    }
+
     setIsSubmitted(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
